@@ -2,19 +2,18 @@ version: '3'
  
 services:
   db:
-    image: mysql:5.7
+    image: mysql:latest
     container_name: db
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: app_db
       MYSQL_USER: root
-      MYSQL_PASSWORD: root
     ports:
       - "6033:3306"
     volumes:
       - dbdata:/var/lib/mysql
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
     container_name: pma
     links:
       - db
@@ -22,9 +21,7 @@ services:
       PMA_HOST: db
       PMA_PORT: 3306
       PMA_ARBITRARY: 1
-      PMA_USER: root
-      PMA_PASSWORD: root
-    restart: always
+      MYSQL_ROOT_PASSWORD: root
     ports:
       - 8081:80
 volumes:
