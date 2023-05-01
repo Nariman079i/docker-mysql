@@ -9,7 +9,7 @@ services:
     ports:
       - "3308:3306"
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
+    image: phpmyadmin:latest
     restart: always
     environment:
       PMA_HOST: db
